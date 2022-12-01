@@ -1,0 +1,23 @@
+on: [push]
+
+name: CI
+
+env:
+  RUSTFLAGS: --codegen target-cpu=native
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out sources
+        uses: actions/checkout@v2
+
+      - name: Get Rust config
+        run: echo RUST_CFG=$(rustc --print cfg ${{ env.RUSTFLAGS }}) >> $GITHUB_ENV
+
+      - name: Set up Rust cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Run tests
+        run: cargo test --color=always --release -- --color=always -Z unstable-options --report-time

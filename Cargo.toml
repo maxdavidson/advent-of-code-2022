@@ -1,0 +1,9 @@
+[package]
+name = "advent-of-code-2022"
+version = "0.1.0"
+authors = ["Max Davidson <davidsonmax@gmail.com>"]
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+
